@@ -2,8 +2,8 @@ import React from "react";
 import UsersList from "./UsersList.jsx";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import EditUserModal from "./EditUserModal.jsx";
-import DeleteUserModal from "./DeleteUserModal.jsx";
+import EditUserModal from "./modals/EditUserModal.jsx";
+import DeleteUserModal from "./modals/DeleteUserModal.jsx";
 
 
 const Dashboard = () => {

@@ -71,7 +71,6 @@ export const validateModal =
     if (type === MODAL_STATE) {
       if (payload.open) {
         const { adminPanel } = getState();
-        console.log(adminPanel);
         const { email, name } = adminPanel.user;
         emailValidator(email, dispatch);
         nameValidator(name, dispatch);
