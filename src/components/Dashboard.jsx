@@ -1,12 +1,19 @@
 import React from "react";
 import UsersList from "./UsersList.jsx";
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import EditUserModal from "./EditUserModal.jsx";
+import DeleteUserModal from "./DeleteUserModal.jsx";
+
 
 const Dashboard = () => {
   return (
-    <>
-      <div>Dashboard</div>
+    <Box>
+    <Typography variant="h2" component="div" gutterBottom>Dashboard</Typography>
       <UsersList />
-    </>
+      <EditUserModal/>
+      <DeleteUserModal/>
+    </Box>
   );
 };
 
