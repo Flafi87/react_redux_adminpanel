@@ -1,9 +1,9 @@
 import React from "react";
 import User from "./User.jsx";
 import Box from "@mui/material/Box";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
-import HeaderMenu from "./HeaderMenu.jsx";
+import Header from "./Header.jsx";
 
 const UsersList = () => {
   const users = useSelector((state) => state.adminPanel.users);
@@ -16,16 +16,24 @@ const UsersList = () => {
       <div>No registered users</div>
     );
 
+    const loadingScreen =    (<Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        paddingTop: "50%",
+      }}
+    >
+      <CircularProgress />
+    </Box>);   
+
   if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent:"center",width:"100%",height:"100%", paddingTop:"50%"}}>
-        <CircularProgress />
-      </Box>
-    );
+    return loadingScreen;
   } else {
     return (
-      <Box sx={{ flexGrow: 1, overflow: "hidden" }} border={1}>
-        <HeaderMenu />
+      <Box sx={{ flexGrow: 1 }} border={1}>
+        <Header />
         <Box>{usersGrid}</Box>
       </Box>
     );
