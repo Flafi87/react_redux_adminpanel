@@ -1,21 +1,35 @@
 import React from "react";
 import User from "./User.jsx";
-import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import {  useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
+import HeaderMenu from "./HeaderMenu.jsx";
 
 const UsersList = () => {
   const users = useSelector((state) => state.adminPanel.users);
+  const loading = useSelector((state) => state.adminPanel.loading);
 
-  return (
-    <>
-      <div className="header">
-        <div>UsersList</div>
-        <button>Add New</button>
-      </div>
-      {users.map((user) => (
-        <User user={user} key={user.id} />
-      ))}
-    </>
-  );
+  const usersGrid =
+    users.length !== 0 ? (
+      users.map((user) => <User user={user} key={user.id} />)
+    ) : (
+      <div>No registered users</div>
+    );
+
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent:"center",width:"100%",height:"100%", paddingTop:"50%"}}>
+        <CircularProgress />
+      </Box>
+    );
+  } else {
+    return (
+      <Box sx={{ flexGrow: 1, overflow: "hidden" }} border={1}>
+        <HeaderMenu />
+        <Box>{usersGrid}</Box>
+      </Box>
+    );
+  }
 };
 
 export default UsersList;

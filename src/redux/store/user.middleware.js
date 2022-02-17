@@ -1,4 +1,12 @@
-import { DELETE_USER, UPDATE_USER } from "../types";
+import {
+  DELETE_USER,
+  UPDATE_USER,
+  ADD_USER,
+  CHANGE_USER_DATA,
+  FORM_VALIDITY,
+  MODAL_STATE,
+} from "../types";
+import { emailValidator, nameValidator } from "./validators";
 
 export const updateUser =
   ({ getState }) =>
@@ -24,6 +32,52 @@ export const deleteUser =
       const { users } = adminPanel;
       const reducedUsersList = users.filter((user) => user.id !== payload);
       return next({ type, payload: reducedUsersList });
+    }
+    return next({ type, payload });
+  };
+
+export const addUser =
+  ({ getState }) =>
+  (next) =>
+  ({ type, payload }) => {
+    if (type === ADD_USER) {
+      const { adminPanel } = getState();
+      const { startId } = adminPanel;
+      payload.id = startId + 1;
+      return next({ type, payload });
+    }
+    return next({ type, payload });
+  };
+
+export const changeUserData =
+  ({ getState, dispatch }) =>
+  (next) =>
+  ({ type, payload }) => {
+    if (type === CHANGE_USER_DATA) {
+      if (payload.key === "email") {
+        emailValidator(payload.value, dispatch);
+      } else if (payload.key === "name") {
+        nameValidator(payload.value, dispatch);
+      }
+      return next({ type, payload });
+    }
+    return next({ type, payload });
+  };
+
+export const validateModal =
+  ({ getState, dispatch }) =>
+  (next) =>
+  ({ type, payload }) => {
+    if (type === MODAL_STATE) {
+      if (payload.open) {
+        const { adminPanel } = getState();
+        console.log(adminPanel);
+        const { email, name } = adminPanel.user;
+        emailValidator(email, dispatch);
+        nameValidator(name, dispatch);
+      }
+
+      return next({ type, payload });
     }
     return next({ type, payload });
   };
