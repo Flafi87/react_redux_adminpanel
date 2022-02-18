@@ -1,5 +1,9 @@
 import { FORM_VALIDITY } from "../types";
 
+/** E-mail validation
+ * @param  {} value
+ * @param  {} dispatch
+ */
 export const emailValidator = (value, dispatch) => {
   if (value.length === 0) {
     dispatch({
@@ -29,7 +33,10 @@ export const emailValidator = (value, dispatch) => {
     }
   }
 };
-
+/** Name validation
+ * @param  {} value
+ * @param  {} dispatch
+ */
 export const nameValidator = (value, dispatch) => {
   if (value.length === 0) {
     dispatch({

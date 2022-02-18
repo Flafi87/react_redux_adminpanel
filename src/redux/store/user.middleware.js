@@ -3,7 +3,6 @@ import {
   UPDATE_USER,
   ADD_USER,
   CHANGE_USER_DATA,
-  FORM_VALIDITY,
   MODAL_STATE,
 } from "../types";
 import { emailValidator, nameValidator } from "./validators";

@@ -1,3 +1,4 @@
+/**Action types */
 export const GET_USERS = "GET_USERS";
 export const GET_ONE_USER = "GET_ONE_USER";
 export const UPDATE_USER = "UPDATE_USER";
@@ -13,3 +14,5 @@ export const CHANGE_CITY = "CHANGE_CITY";
 
 export const ERROR = "ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+export const SMALL_SCREEN = "SMALL_SCREEN";
