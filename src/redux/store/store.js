@@ -8,6 +8,7 @@ import {
   addUser,
   changeUserData,
   validateModal,
+  sortByUserName,
 } from "./user.middleware";
 
 const initialState = {};
@@ -18,6 +19,7 @@ const middleWare = [
   addUser,
   changeUserData,
   validateModal,
+  sortByUserName,
 ];
 const middlewareEnhancer = applyMiddleware(...middleWare);
 

@@ -5,17 +5,25 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
-import { MODAL_STATE } from "../redux/types";
+import { MODAL_STATE, SORT_BY_USERNAME } from "../redux/types";
+import SortIcon from "@mui/icons-material/Sort";
 
 const HeaderMenu = ({ smallScreen }) => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleAddUser = () => {
     return dispatch({
       type: MODAL_STATE,
       payload: { open: true, title: "Add new user" },
     });
   };
+
+  const handleSortClick = () => {
+    return dispatch({
+      type: SORT_BY_USERNAME,
+    });
+  };
+
   if (smallScreen) {
     return (
       <Box className="header">
@@ -34,7 +42,7 @@ const HeaderMenu = ({ smallScreen }) => {
           <Grid item xs="auto" margin={3}>
             <Button
               variant="conatined"
-              onClick={handleClick}
+              onClick={handleAddUser}
               size="large"
               sx={{
                 color: "white",
@@ -57,9 +65,18 @@ const HeaderMenu = ({ smallScreen }) => {
           sx={{ textAlign: "center" }}
         >
           <Grid item md={1}>
-            <Typography variant="h4" component={"h4"}>
-              Username
-            </Typography>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Typography variant="h5" component={"h5"}>
+                Username
+              </Typography>
+              <Button>
+                <SortIcon onClick={handleSortClick} />
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Box>
@@ -82,7 +99,7 @@ const HeaderMenu = ({ smallScreen }) => {
           <Grid item xs="auto" margin={3}>
             <Button
               variant="conatined"
-              onClick={handleClick}
+              onClick={handleAddUser}
               size="large"
               sx={{
                 color: "white",
@@ -115,9 +132,18 @@ const HeaderMenu = ({ smallScreen }) => {
             </Typography>
           </Grid>
           <Grid item md={1}>
-            <Typography variant="h6" component={"h6"}>
-              Username
-            </Typography>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Typography variant="h6" component={"h6"}>
+                Username
+              </Typography>
+              <Button>
+                <SortIcon onClick={handleSortClick} />
+              </Button>
+            </Box>
           </Grid>
           <Grid item md={1}>
             <Typography variant="h6" component={"h6"}>

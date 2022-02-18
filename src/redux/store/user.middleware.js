@@ -4,6 +4,7 @@ import {
   ADD_USER,
   CHANGE_USER_DATA,
   MODAL_STATE,
+  SORT_BY_USERNAME,
 } from "../types";
 import { emailValidator, nameValidator } from "./validators";
 
@@ -76,6 +77,49 @@ export const validateModal =
       }
 
       return next({ type, payload });
+    }
+    return next({ type, payload });
+  };
+
+export const sortByUserName =
+  ({ getState, dispatch }) =>
+  (next) =>
+  ({ type, payload }) => {
+    if (type === SORT_BY_USERNAME) {
+      console.log("sort by usernam");
+      const { adminPanel } = getState();
+      const { users, sorted } = adminPanel;
+      if (sorted === "" || sorted === "z-a") {
+        const sortedUsers = users.sort((a, b) => {
+          let fa = a.username.toLowerCase(),
+            fb = b.username.toLowerCase();
+
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        });
+        console.log(sortedUsers);
+        return next({ type, payload: { users: sortedUsers, sorted: "a-z" } });
+      } else {
+        const sortedUsers = users.sort((a, b) => {
+          let fa = a.username.toLowerCase(),
+            fb = b.username.toLowerCase();
+
+          if (fa > fb) {
+            return -1;
+          }
+          if (fa < fb) {
+            return 1;
+          }
+          return 0;
+        });
+        console.log(sortedUsers);
+        return next({ type, payload: { users: sortedUsers, sorted: "z-a" } });
+      }
     }
     return next({ type, payload });
   };

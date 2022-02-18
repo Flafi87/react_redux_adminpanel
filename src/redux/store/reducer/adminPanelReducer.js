@@ -14,6 +14,7 @@ import {
   ERROR,
   CLEAR_ERROR,
   SMALL_SCREEN,
+  SORT_BY_USERNAME,
 } from "../../types";
 
 const initialState = {
@@ -41,6 +42,7 @@ const initialState = {
   },
   startId: 1,
   smallScreen: false,
+  sorted: "",
 };
 
 export default (state = initialState, action) => {
@@ -73,7 +75,7 @@ export default (state = initialState, action) => {
     case ADD_USER:
       return {
         ...state,
-        users: [action.payload, ...state.users],
+        users: [...state.users, action.payload],
         user: initialState.user,
         loading: false,
         modal: {
@@ -158,6 +160,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         smallScreen: action.payload,
+      };
+    case SORT_BY_USERNAME:
+      return {
+        ...state,
+        users: [...action.payload.users],
+        sorted: action.payload.sorted,
       };
     default:
       return state;
