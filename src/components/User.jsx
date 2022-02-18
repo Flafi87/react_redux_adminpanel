@@ -53,7 +53,13 @@ const User = ({ user, smallScreen }) => {
         <Typography variant="h5">{name}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Box container display={"flex"} justifyContent={"center"} flexDirection={"column"} sx={{".MuiTypography-root":{textAlign:"center"} }}>
+        <Box
+          container
+          display={"flex"}
+          justifyContent={"center"}
+          flexDirection={"column"}
+          sx={{ ".MuiTypography-root": { textAlign: "center" } }}
+        >
           <Box>
             <Typography variant="h6">ID: {id}</Typography>
           </Box>
@@ -67,29 +73,27 @@ const User = ({ user, smallScreen }) => {
             <Typography variant="h6">CITY: {city}</Typography>
           </Box>
 
-          <Grid
-            item
-            md={1}
-            display="flex"
-            justifyContent={"space-between"}
-            marginRight={1}
-          >
-            <Button
-              onClick={handleEdit}
-              variant="contained"
-              sx={{
-                color: "white",
-                backgroundColor: "#edb065",
-                ":hover": {
-                  backgroundColor: "#f28704",
-                },
-              }}
-            >
-              edit
-            </Button>
-            <Button variant="contained" color="error" onClick={handleDelete}>
-              delete
-            </Button>
+          <Grid item md={1} display="flex" justifyContent={"space-between"}>
+            <Box>
+              <Button
+                onClick={handleEdit}
+                variant="contained"
+                sx={{
+                  color: "white",
+                  backgroundColor: "#edb065",
+                  ":hover": {
+                    backgroundColor: "#f28704",
+                  },
+                }}
+              >
+                edit
+              </Button>
+            </Box>
+            <Box>
+              <Button variant="contained" color="error" onClick={handleDelete}>
+                delete
+              </Button>
+            </Box>
           </Grid>
         </Box>
       </AccordionDetails>
@@ -133,12 +137,7 @@ const User = ({ user, smallScreen }) => {
           <p>{city}</p>
         </Grid>
 
-        <Grid
-          item
-          md={1}
-          display="flex"
-          justifyContent={"space-between"}
-        >
+        <Grid item md={1} display="flex" justifyContent={"space-between"}>
           <Button
             onClick={handleEdit}
             variant="contained"
