@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
@@ -158,6 +159,19 @@ const User = ({ user, smallScreen }) => {
       </Grid>
     );
   }
+};
+
+User.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    address: PropTypes.shape({
+      city: PropTypes.string,
+    }),
+  }),
+  smallScreen: PropTypes.bool,
 };
 
 export default User;

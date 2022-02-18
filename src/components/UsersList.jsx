@@ -8,9 +8,6 @@ import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import { SMALL_SCREEN } from "../redux/types/index.js";
 import { useDispatch } from "react-redux";
-import List from "@mui/material/List";
-
-import ListItemText from "@mui/material/ListItemText";
 
 import Header from "./Header.jsx";
 

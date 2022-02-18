@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -15,7 +15,6 @@ import {
   CHANGE_CITY,
 } from "../../redux/types";
 import TextField from "@mui/material/TextField";
-import { width } from "@mui/system";
 
 const style = {
   position: "absolute",
@@ -67,7 +66,12 @@ const EditUserModal = () => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h4" component="h4" margin={3}>
+        <Typography
+          id="modal-modal-title"
+          variant="h4"
+          component="h4"
+          margin={3}
+        >
           {title}
         </Typography>
         <Box
