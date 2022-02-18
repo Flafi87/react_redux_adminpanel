@@ -10,3 +10,6 @@ export const SET_START_ID = "SET_START_ID";
 export const FORM_VALIDITY = "FORM_VALIDITY";
 export const CLEAR_USER = "CLEAR_USER";
 export const CHANGE_CITY = "CHANGE_CITY";
+
+export const ERROR = "ERROR";
+export const CLEAR_ERROR = "CLEAR_ERROR";

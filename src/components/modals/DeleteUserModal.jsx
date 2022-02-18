@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Grid from "@mui/material/Grid";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { deleteUser } from "../../redux/actions/adminActions";
 import store from "../../redux/store/store";
-import { DELETE_USER, CLEAR_USER, DELETE_MODAL_STATE } from "../../redux/types";
-import TextField from "@mui/material/TextField";
+import { CLEAR_USER, DELETE_MODAL_STATE } from "../../redux/types";
 
 const style = {
   position: "absolute",
@@ -25,8 +23,6 @@ const DeleteUserModal = () => {
   const dispatch = useDispatch();
   const modalOpen = useSelector((state) => state.adminPanel.deleteModal);
   const user = useSelector((state) => state.adminPanel.user);
-
-  useEffect(() => {}, []);
 
   const handleClose = () => {
     dispatch({ type: CLEAR_USER });
@@ -51,8 +47,8 @@ const DeleteUserModal = () => {
         <Box my={3}>
           <Typography id="modal-modal-title" variant="p" component="p">
             Do you really want to delete this user?
-            <Typography sx={{ fontWeight: "bold" }}>{user.name}</Typography>
           </Typography>
+          <Typography sx={{ fontWeight: "bold" }}>{user.name}</Typography>
         </Box>
 
         <Box

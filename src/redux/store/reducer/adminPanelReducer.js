@@ -11,11 +11,15 @@ import {
   FORM_VALIDITY,
   CLEAR_USER,
   CHANGE_CITY,
+  ERROR,
+  CLEAR_ERROR,
 } from "../../types";
 
 const initialState = {
   users: [],
   loading: true,
+  error: "",
+  errorModal: false,
   user: {
     id: "",
     name: "",
@@ -44,6 +48,8 @@ export default (state = initialState, action) => {
         ...state,
         users: action.payload,
         loading: false,
+        error: "",
+        errorModal: false,
       };
     case GET_ONE_USER:
       return {
@@ -133,6 +139,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: initialState.user,
+      };
+    case ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        errorModal: true,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: "",
+        errorModal: false,
       };
     default:
       return state;

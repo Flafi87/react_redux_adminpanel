@@ -79,9 +79,9 @@ const User = ({ user }) => {
           variant="contained"
           sx={{
             color: "white",
-            backgroundColor: "#ede665",
+            backgroundColor: "#edb065",
             ":hover": {
-              backgroundColor: "#edb065",
+              backgroundColor: "#f28704",
             },
           }}
         >
