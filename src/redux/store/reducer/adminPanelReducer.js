@@ -13,6 +13,7 @@ import {
   CHANGE_CITY,
   ERROR,
   CLEAR_ERROR,
+  SMALL_SCREEN,
 } from "../../types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
     name: { error: false, description: "" },
   },
   startId: 1,
+  smallScreen: false,
 };
 
 export default (state = initialState, action) => {
@@ -151,6 +153,11 @@ export default (state = initialState, action) => {
         ...state,
         error: "",
         errorModal: false,
+      };
+    case SMALL_SCREEN:
+      return {
+        ...state,
+        smallScreen: action.payload,
       };
     default:
       return state;

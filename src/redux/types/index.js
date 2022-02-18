@@ -13,3 +13,5 @@ export const CHANGE_CITY = "CHANGE_CITY";
 
 export const ERROR = "ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+export const SMALL_SCREEN = "SMALL_SCREEN";

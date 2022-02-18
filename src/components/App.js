@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getUsers } from "../redux/actions/adminActions";
-import store from "../redux/store/store";
 import Dashboard from "./Dashboard.jsx";
+import store from "../redux/store/store.js";
 
 const App = () => {
   useEffect(() => {
