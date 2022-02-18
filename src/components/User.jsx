@@ -51,7 +51,7 @@ const User = ({ user, smallScreen }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant="h5">{name}</Typography>
+        <Typography variant="h5">{username}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Box
@@ -65,7 +65,7 @@ const User = ({ user, smallScreen }) => {
             <Typography variant="h6">ID: {id}</Typography>
           </Box>
           <Box>
-            <Typography variant="h6">USERNAME: {username}</Typography>
+            <Typography variant="h6">NAME: {name}</Typography>
           </Box>
           <Box>
             <Typography variant="h6">E-MAIL: {email}</Typography>

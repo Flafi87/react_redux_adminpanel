@@ -16,3 +16,4 @@ export const ERROR = "ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export const SMALL_SCREEN = "SMALL_SCREEN";
+export const SORT_BY_USERNAME = "SORT_BY_USERNAME";
