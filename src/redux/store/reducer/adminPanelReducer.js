@@ -113,7 +113,6 @@ export default (state = initialState, action) => {
           [action.payload.key]: action.payload.value,
         },
       };
-
     case CHANGE_CITY:
       return {
         ...state,

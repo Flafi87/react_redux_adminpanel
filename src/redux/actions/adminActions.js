@@ -10,11 +10,17 @@ import {
   ERROR,
   CLEAR_ERROR,
 } from "../types";
+const mainAPI = process.env.API;
+
+const errorDispatch = (dispatch, errorMessage) => {
+  dispatch({
+    type: ERROR,
+    payload: errorMessage,
+  });
+};
 
 export const getUsers = () => (dispatch, getState) => {
-  fetch(
-    "https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data"
-  )
+  fetch(mainAPI)
     .then((response) => response.json())
     .then((data) => {
       dispatch({
@@ -29,38 +35,30 @@ export const getUsers = () => (dispatch, getState) => {
         payload: data.length,
       });
     })
-    .catch((err) =>
-      dispatch({ type: ERROR, payload: "Could not download data :(" })
-    );
+    .catch(() => errorDispatch(dispatch, "Could not download data :("));
 };
 
 export const addUser = () => (dispatch, getState) => {
   const { adminPanel } = getState();
   const { user } = adminPanel;
-  fetch(
-    "https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        ...user,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }
-  )
+  fetch(mainAPI, {
+    method: "POST",
+    body: JSON.stringify({
+      ...user,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
     .then((response) => response.json())
-    .then((json) =>
+    .then(() =>
       dispatch({
         type: ADD_USER,
         payload: user,
       })
     )
-    .catch((err) => {
-      dispatch({
-        type: ERROR,
-        payload: "Could not add the user. Network error",
-      });
+    .catch(() => {
+      errorDispatch(dispatch, "Could not add user :( ");
     });
 };
 
@@ -68,18 +66,15 @@ export const updateUser = () => (dispatch, getState) => {
   const { adminPanel } = getState();
   const { user } = adminPanel;
 
-  fetch(
-    `https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${user.id}`,
-    {
-      method: "PUT",
-      body: JSON.stringify({
-        ...user,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }
-  )
+  fetch(`${mainAPI}${user.id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      ...user,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
     .then((response) => response.json())
     .then((json) => {
       if (json.id) {
@@ -90,15 +85,11 @@ export const updateUser = () => (dispatch, getState) => {
         dispatch({ type: CLEAR_USER });
         dispatch({ type: MODAL_STATE, payload: { open: false } });
       } else {
-        dispatch({
-          type: ERROR,
-          payload:
-            "Error during updating user, it is not existing in the database",
-        });
+        errorDispatch(dispatch, "Could not update user :( ");
       }
     })
-    .catch((err) => {
-      dispatch({ type: ERROR, payload: "Error during updating user" });
+    .catch(() => {
+      errorDispatch(dispatch, "Could not update user :( ");
     });
 };
 
@@ -106,7 +97,7 @@ export const deleteUser = () => (dispatch, getState) => {
   const { adminPanel } = getState();
   const { user } = adminPanel;
 
-  fetch(`https://jsonplaceholder.typicode.com/posts/${user.id}`, {
+  fetch(`${mainAPI}${user.id}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -114,10 +105,10 @@ export const deleteUser = () => (dispatch, getState) => {
         dispatch({ type: DELETE_USER, payload: user.id });
         dispatch({ type: DELETE_MODAL_STATE, payload: false });
       } else {
-        dispatch({ type: ERROR, payload: "Error during deleting user" });
+        errorDispatch(dispatch, "Error during deleting user");
       }
     })
-    .catch((err) => {
-      dispatch({ type: ERROR, payload: "Error during deleting user" });
+    .catch(() => {
+      errorDispatch(dispatch, "Error during deleting user");
     });
 };

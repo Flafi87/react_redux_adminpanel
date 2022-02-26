@@ -33,6 +33,7 @@ export const emailValidator = (value, dispatch) => {
     }
   }
 };
+
 /** Name validation
  * @param  {} value
  * @param  {} dispatch

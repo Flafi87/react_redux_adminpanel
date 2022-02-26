@@ -102,7 +102,6 @@ export const sortByUserName =
           }
           return 0;
         });
-        console.log(sortedUsers);
         return next({ type, payload: { users: sortedUsers, sorted: "a-z" } });
       } else {
         const sortedUsers = users.sort((a, b) => {
@@ -117,7 +116,6 @@ export const sortByUserName =
           }
           return 0;
         });
-        console.log(sortedUsers);
         return next({ type, payload: { users: sortedUsers, sorted: "z-a" } });
       }
     }
