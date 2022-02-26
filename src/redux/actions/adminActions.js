@@ -8,6 +8,7 @@ import {
   CLEAR_USER,
   MODAL_STATE,
   ERROR,
+  CLEAR_ERROR,
 } from "../types";
 
 export const getUsers = () => (dispatch, getState) => {
@@ -16,6 +17,9 @@ export const getUsers = () => (dispatch, getState) => {
   )
     .then((response) => response.json())
     .then((data) => {
+      dispatch({
+        type: CLEAR_ERROR,
+      });
       dispatch({
         type: GET_USERS,
         payload: data,

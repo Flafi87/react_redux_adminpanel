@@ -23,8 +23,7 @@ const style = {
 
 const ErrorModal = () => {
     const dispatch = useDispatch();
-    const errorModal = useSelector((state) => state.adminPanel.errorModal);
-    const error = useSelector((state) => state.adminPanel.error);
+    const {errorModal,error} = useSelector((state) => state.error);
 
     const handleClose =() => {
         dispatch({ type: ERROR, payload: null });

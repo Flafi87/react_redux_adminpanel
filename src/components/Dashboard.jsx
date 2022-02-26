@@ -10,7 +10,7 @@ import store from "../redux/store/store.js";
 
 
 const Dashboard = () => {
-  const error = useSelector((state) => state.adminPanel.error);
+  const {error} = useSelector((state) => state.error);
   return (
     <Box>
     <Typography variant="h2" component="div" gutterBottom>Dashboard</Typography>
